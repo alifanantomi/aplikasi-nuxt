@@ -14,12 +14,13 @@
             v-model="task.isDone"
         >
         <div :class="['d-flex flex-column', task.isDone ? 'text-decoration-line-through fst-italic' : '']">
-            <div class="title-task mb-1">
+            <nuxt-link class="title-task mb-1" :to="'app/detail/' + task.id" >
                 {{ task.title }}
-            </div>
-            <div class="description-task small text-muted">
+            </nuxt-link>
+            <div class="description-task small text-muted mb-3">
                 {{ task.description }}
             </div>
+            <input class="form-control form-control-sm" type="date" />
         </div>
     </div>
 </template>
@@ -35,6 +36,11 @@ export default {
             type: Boolean,
             required: true,
             default: false
+        }
+    },
+    methods: {
+        goToDetail(id) {
+            this.$router.push(`app/detail/${id}`)
         }
     }
 }
